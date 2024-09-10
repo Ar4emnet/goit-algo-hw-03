@@ -1,6 +1,6 @@
 from random import randint
 
-def get_number_ticket(min,max,quantity):
+def get_numbers_ticket(min,max,quantity):
     """
        Generate a list of unique random numbers within a given range.
 
@@ -12,7 +12,7 @@ def get_number_ticket(min,max,quantity):
        Returns:
        list: A sorted list of unique random numbers within the given range.
        """
-    if min<=0 or max > 1000:
+    if min<=0 or max > 1000 or min > max:
         print("valid size")
     else:
         tickets = []
@@ -20,11 +20,15 @@ def get_number_ticket(min,max,quantity):
             number = randint(min,max)
             if number not in tickets:
                 tickets.append(number)
-        return sorted(tickets)
+    return sorted(tickets)
 
+if __name__ == "__main__":
+    try:
+        minimal = int(input("Minimum:"))
+        maximal = int(input("Maximum:"))
+        quantity = int(input("Quantity:"))
 
-minimal = int(input("Minimum:"))
-maximal = int(input("Maximum:"))
-quantity = int(input("Quantity:"))
-
-print("tickets",get_number_ticket(minimal,maximal,quantity))
+        print("tickets", get_numbers_ticket(minimal, maximal, quantity) if get_number_ticket(minimal, maximal, quantity) else
+              "No unique random numbers in this range.")
+    except:
+        print("Invalid input. Please enter numbers.")
