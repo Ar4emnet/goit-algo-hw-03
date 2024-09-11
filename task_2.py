@@ -19,7 +19,7 @@ def get_numbers_ticket(min,max,quantity):
         min = int(min)
         max = int(max)
         quantity = int(quantity)
-        if min<=0 or max > 1000 or min > max:
+        if min<=0 or max > 1000 or min > max or max-min <quantity:
             print("valid size")
         else:
             while len(tickets) < quantity:
