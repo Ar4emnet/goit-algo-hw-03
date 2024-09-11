@@ -12,23 +12,27 @@ def get_numbers_ticket(min,max,quantity):
        Returns:
        list: A sorted list of unique random numbers within the given range.
        """
-    if min<=0 or max > 1000 or min > max:
-        print("valid size")
-    else:
-        tickets = []
-        while len(tickets) < quantity:
-            number = randint(min,max)
-            if number not in tickets:
-                tickets.append(number)
-    return sorted(tickets)
+    tickets = []
+
+    # Check if input values are valid and within the specified range. If not, print an error message and exit.
+    try:
+        min = int(min)
+        max = int(max)
+        quantity = int(quantity)
+        if min<=0 or max > 1000 or min > max:
+            print("valid size")
+        else:
+            while len(tickets) < quantity:
+                number = randint(min,max)
+                if number not in tickets:
+                    tickets.append(number)
+    except ValueError:
+        print("Invalid input. Please enter numbers.")
+    finally: return sorted(tickets)
 
 if __name__ == "__main__":
-    try:
-        minimal = int(input("Minimum:"))
-        maximal = int(input("Maximum:"))
-        quantity = int(input("Quantity:"))
+    minimal = input("Minimum:")
+    maximal = input("Maximum:")
+    quantity = input("Quantity:")
 
-        print("tickets", get_numbers_ticket(minimal, maximal, quantity) if get_number_ticket(minimal, maximal, quantity) else
-              "No unique random numbers in this range.")
-    except:
-        print("Invalid input. Please enter numbers.")
+    print("tickets", get_numbers_ticket(minimal, maximal, quantity))
